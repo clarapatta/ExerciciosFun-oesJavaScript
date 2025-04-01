@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funções</title>
+</head>
+<body>
+
+    <script>
+
+        //Criando o objeto de data
+        let agora = new Date();
+        console.log(agora);
+
+        //Filtrando o objeto de data
+        let data = new Date();
+        console.log("Ano:", data.getFullYear());
+        console.log("Mês:", data.getMonth() + 1); // Mês começa em 0
+        console.log("Dia:", data.getDate());
+        console.log("Hora:", data.getHours());
+        console.log("Minuto:", data.getMinutes());
+        console.log("Segundo:", data.getSeconds());
+
+        //Formatando a data
+        let dataFormatada = data.toLocaleDateString('pt-BR');
+        console.log("Data formatada:", dataFormatada);
+
+        //Funções Matemáticas
+        console.log(Math.PI); // Pi
+        console.log(Math.sqrt(25)); // Raiz quadrada
+        console.log(Math.pow(2, 3)); // Potência
+        console.log(Math.round(4.7)); // Arredondar para o número inteiro mais próximo
+        console.log(Math.floor(4.9)); // Arredondar para baixo
+        console.log(Math.ceil(4.1)); // Arredondar para cima
+        console.log(Math.random()); // Número aleatório entre 0 e 1
+
+        //Gerando um número aleatório dentro de um intervalo
+        function numeroAleatorio(min, max) { // Gera um número aleatório entre min e max
+            return Math.floor(Math.random() * (max - min + 1)) + min; // Gera um número inteiro
+        }
+        console.log("Número aleatório entre 1 e 10:", numeroAleatorio(1, 10)); // Gera um número aleatório entre 1 e 10
+
+        //Manipulando strings
+        let texto = "JavaScript é incrível!";
+        console.log(texto.length); // Comprimento da string
+        console.log(texto.toUpperCase()); // Converter para maiúsculas
+        console.log(texto.toLowerCase()); // Converter para minúsculas
+        console.log(texto.indexOf("é")); // Posição da palavra "é"
+        console.log(texto.substring(0, 10)); // Extrair uma parte da string (do índice 0 ao 10))
+        console.log(texto.replace("incrível", "fantástico")); // Substituir uma parte da string
+
+        //Dividindo uma string
+        let lsitaPalavras = texto.split(" "); // Divide a string em um array
+        console.log(lsitaPalavras); // ["JavaScript", "é", "incrível!"]
+
+    </script>
+    
+</body>
+</html>

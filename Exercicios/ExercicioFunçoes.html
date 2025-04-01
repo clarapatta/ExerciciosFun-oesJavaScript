@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Exercicios/css/styles.css">
+    <title>Funções Date, Math e String</title>
+    <style>
+        .box {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            margin: 5px 0;
+            padding: 5px 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="img/SENAI_São_Paulo_logo (1).png" alt="Logo SENAI São Paulo">
+
+    <h1>Exercícios De Funções Date, Math e String</h1>
+
+    <h2>Exercícios</h2>
+
+    <div class="box">
+        <!-- Funções de Data e Hora -->
+        <section>
+            <h3>1- Funções de Data e Hora</h3>
+            <button onclick="mostrarDataAtual()">Ver Data</button>
+            <p id="dataAtual"></p>
+
+            <button onclick="mostrarHoraAtual()">Ver Hora</button>
+            <p id="horaAtual"></p>
+        </section>
+    </div>
+
+    <div class="box">
+        <!-- Funções Matemáticas -->
+        <section>
+            <h3>2- Funções Matemáticas</h3>
+            <button onclick="mostrarNumeroAleatorio()">Ver Número Aleatório</button>
+            <p id="numeroAleatorio"></p>
+
+            <label for="numeroQuadrado">Insira o número que deseja elevar ao quadrado:</label>
+            <input type="number" id="numeroQuadrado" placeholder="Número">
+            <button onclick="mostrarQuadrado()">Ver Quadrado</button>
+            <p id="quadrado"></p>
+
+            <label for="numeroArredondar">Insira o número que deseja arredondar:</label>
+            <input type="number" id="numeroArredondar" placeholder="Número" step="0.01">
+            <button onclick="mostrarArredondado()">Ver Arredondado</button>
+            <p id="arredondado"></p>
+        </section>
+
+        <div class="box">
+            <!-- Funções de String -->
+            <section>
+                <h3>3- Funções de String</h3>
+                <label for="texto">Insira o texto que deseja converter para maiúsculas:</label>
+                <input type="text" id="texto" placeholder="Texto">
+                <button onclick="mostrarMaiusculas()">Ver em Maiúsculas</button>
+                <p id="maiusculas"></p>
+
+                <label for="textoEspacos">Insira o texto que deseja remover os espaços extras:</label>
+                <input type="text" id="textoEspacos" placeholder="Texto">
+                <button onclick="mostrarTextoSemEspacos()">Remover Espaços Extras</button>
+                <p id="espacos"></p>
+
+                <label for="textoSubstituir">Insira o texto para substituição de palavras:</label>
+                <input type="text" id="textoSubstituir" placeholder="Texto original">
+                <br>
+                <label for="palavraAntiga">Palavra a ser substituída:</label>
+                <input type="text" id="palavraAntiga" placeholder="Palavra antiga">
+                <br>
+                <label for="palavraNova">Nova palavra:</label>
+                <input type="text" id="palavraNova" placeholder="Palavra nova">
+                <br>
+                <button onclick="mostrarTextoSubstituido()">Substituir Palavras</button>
+                <p id="substituicao"></p>
+
+            </section>
+
+        </div>
+
+        <script>
+            // Inicialização ao carregar a página
+            window.onload = function () {
+                // Inicializar os valores
+                document.getElementById("dataAtual").innerHTML = "Clique no botão para ver a data";
+                document.getElementById("horaAtual").innerHTML = "Clique no botão para ver a hora";
+                document.getElementById("numeroAleatorio").innerHTML = "Clique no botão para gerar um número aleatório";
+            };
+
+            // Função que retorne a data atual no formato "dd/mm/aaaa"
+            function dataAtual() {
+                let data = new Date(); // Cria um objeto de data
+                let dia = data.getDate(); // Dia do mês
+                let mes = data.getMonth() + 1; // Mês começa em 0
+                let ano = data.getFullYear(); // Ano completo
+
+                // Formatar dia e mês para ter sempre dois dígitos
+                dia = dia < 10 ? '0' + dia : dia;
+                mes = mes < 10 ? '0' + mes : mes;
+
+                return dia + '/' + mes + '/' + ano;
+            }
+
+            function mostrarDataAtual() {
+                document.getElementById("dataAtual").innerHTML = "Data Atual: " + dataAtual();
+            }
+
+            // Função que retorne a hora atual no formato "hh:mm:ss"
+            function horaAtual() {
+                let data = new Date(); // Cria um objeto de data
+                let hora = data.getHours(); // Hora
+                let minuto = data.getMinutes(); // Minuto
+                let segundo = data.getSeconds(); // Segundo
+
+                // Formatar hora, minuto e segundo para ter sempre dois dígitos
+                hora = hora < 10 ? '0' + hora : hora;
+                minuto = minuto < 10 ? '0' + minuto : minuto;
+                segundo = segundo < 10 ? '0' + segundo : segundo;
+
+                return hora + ':' + minuto + ':' + segundo;
+            }
+
+            function mostrarHoraAtual() {
+                document.getElementById("horaAtual").innerHTML = "Hora Atual: " + horaAtual();
+                // Atualizar a hora a cada segundo
+                setTimeout(mostrarHoraAtual, 1000);
+            }
+
+            // Função que retorne um número aleatório entre 50 e 100
+            function numeroAleatorio() {
+                let min = 50; // Valor mínimo
+                let max = 100; // Valor máximo
+                let numero = Math.floor(Math.random() * (max - min + 1)) + min; // Gera um número aleatório entre min e max
+                return numero; // Retorna o número gerado
+            }
+
+            function mostrarNumeroAleatorio() {
+                document.getElementById("numeroAleatorio").innerHTML = "Número Aleatório: " + numeroAleatorio();
+            }
+
+            // Função que receba e retorne o valor quadrado de um número
+            function quadrado(numero) {
+                return Math.pow(numero, 2); // Retorna o quadrado do número
+            }
+
+            function mostrarQuadrado() {
+                let num = document.getElementById("numeroQuadrado").value;
+                if (num === "") {
+                    document.getElementById("quadrado").innerHTML = "Por favor, insira um número";
+                } else {
+                    document.getElementById("quadrado").innerHTML = "Resultado: " + quadrado(Number(num));
+                }
+            }
+
+            // Função que arredonde um número para o inteiro mais próximo
+            function arredondar(numero) {
+                return Math.round(numero); // Retorna o número arredondado
+            }
+
+            function mostrarArredondado() {
+                let num = document.getElementById("numeroArredondar").value;
+                if (num === "") {
+                    document.getElementById("arredondado").innerHTML = "Por favor, insira um número";
+                } else {
+                    document.getElementById("arredondado").innerHTML = "Resultado: " + arredondar(Number(num));
+                }
+            }
+
+            // Função que converta uma string para maiúsculas
+            function paraMaiusculas(texto) {
+                return texto.toUpperCase(); // Retorna a string em maiúsculas
+            }
+
+            // Função que converte texto para maiúsculas
+            function paraMaiusculas(texto) {
+                return texto.toUpperCase(); // Retorna o texto em maiúsculas
+            }
+
+            function mostrarMaiusculas() {
+                let texto = document.getElementById("texto").value;
+                if (texto === "") {
+                    document.getElementById("maiusculas").innerHTML = "Por favor, insira um texto";
+                } else {
+                    document.getElementById("maiusculas").innerHTML = "Resultado: " + paraMaiusculas(texto);
+                }
+            }
+
+            // Função que remove espaços extras de uma string
+            function removerEspacos(texto) {
+                return texto.replace(/\s+/g, ' ').trim(); // Remove espaços extras e retorna a string
+            }
+
+            function mostrarTextoSemEspacos() {
+                let texto = document.getElementById("textoEspacos").value;
+                if (texto === "") {
+                    document.getElementById("espacos").innerHTML = "Por favor, insira um texto";
+                } else {
+                    document.getElementById("espacos").innerHTML = "Resultado: " + removerEspacos(texto);
+                }
+            }
+
+    // Função que substitua todas as ocorrências de uma palavra em uma string por outra palavra
+    function substituirPalavra(texto, palavraAntiga, palavraNova) {
+        return texto.replace(new RegExp(palavraAntiga, 'g'), palavraNova); // Substitui todas as ocorrências
+    }
+    
+    function mostrarTextoSubstituido() {
+        let texto = document.getElementById("textoSubstituir").value;
+        let palavraAntiga = document.getElementById("palavraAntiga").value;
+        let palavraNova = document.getElementById("palavraNova").value;
+        
+        if (texto === "" || palavraAntiga === "") {
+            document.getElementById("substituicao").innerHTML = "Por favor, preencha todos os campos necessários";
+        } else {
+            let resultado = substituirPalavra(texto, palavraAntiga, palavraNova);
+            document.getElementById("substituicao").innerHTML = "Resultado: " + resultado;
+        }
+    }
+        </script>
+
+</body>
+
+</html>
